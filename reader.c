@@ -13,6 +13,7 @@ void *reader(void *tid) {
     //unlock w_mutex if last
     if (reader_count == 0) pthread_mutex_unlock(&w_mutex);
     pthread_mutex_unlock(&r_mutex); //unlock r_mutex
+    free(tid);
 
     return NULL;
 }

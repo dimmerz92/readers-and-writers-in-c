@@ -15,32 +15,32 @@ int reader_count = 0;
 
 int main(int argc, char *argv[]) {
     srand(time(NULL));
-    int n_incrementers = rand() % RAND_RANGE;
-    int n_decrementers = rand() % RAND_RANGE;
-    int n_readers = rand() % RAND_RANGE;
+    int n_incrementers = rand() % RAND_RANGE + 1;
+    int n_decrementers = rand() % RAND_RANGE + 1;
+    int n_readers = rand() % RAND_RANGE + 1;
 
     //create incrementer threads
     pthread_t incrementers[n_incrementers];
+    writer_metadata imd[n_incrementers];
     for (int i = 0; i < n_incrementers; i++) {
-        writer_metadata md = {
-            .id = i,
-            .incdec = 1
-        };
-        pthread_create(&incrementers[i], NULL, writer, (void *)&md);
+        imd[i].id = i;
+        imd[i].incdec = 1;
+        pthread_create(&incrementers[i], NULL, writer, (void *)&imd[i]);
     }
     //create decrementer threads
     pthread_t decrementers[n_decrementers];
+    writer_metadata dmd[n_decrementers];
     for (int i = 0; i < n_decrementers; i++) {
-        writer_metadata md = {
-            .id = i,
-            .incdec = -1
-        };
-        pthread_create(&decrementers[i], NULL, writer, (void *)&md);
+        dmd[i].id = i;
+        dmd[i].incdec = -1;
+        pthread_create(&decrementers[i], NULL, writer, (void *)&dmd[i]);
     }
     //create reader threads
     pthread_t readers[n_readers];
     for (int i = 0; i < n_readers; i++) {
-        pthread_create(&readers[i], NULL, reader, (void *)&i);
+        int *id = (int *)malloc(sizeof(int));
+        *id = i;
+        pthread_create(&readers[i], NULL, reader, (void *)id);
     }
 
     //join threads
