@@ -1,6 +1,7 @@
 #include "headers.h"
 
-void reader(int id) {
+void *reader(void *tid) {
+    int id = *(int *)tid; //cast arg back to int
     pthread_mutex_lock(&r_mutex); //lock r_mutex
     reader_count++; //increment count
     //lock w_mutex if first
