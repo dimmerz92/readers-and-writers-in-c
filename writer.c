@@ -14,4 +14,6 @@ void *writer(void *meta) {
         printf("Decrementer %d set sum = %d\n", md.id, shared.sum);
     }
     pthread_mutex_unlock(&w_mutex); //unlock w mutex
+
+    return NULL;
 }

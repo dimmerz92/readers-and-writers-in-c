@@ -26,8 +26,8 @@ extern pthread_mutex_t r_mutex;
 extern pthread_cond_t r_cond;
 extern int reader_count;
 
-void *reader(void *tid);
 void *writer(void *meta);
+void *reader(void *tid);
 void join_threads(pthread_t threads[], int length);
 
 #endif

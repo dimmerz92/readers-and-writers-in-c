@@ -1,8 +1,8 @@
 #include "headers.h"
 
 struct shared_data shared = {
-    .decrementer = NULL,
-    .incrementer = NULL,
+    .decrementer = 0,
+    .incrementer = 0,
     .writers = 0,
     .sum = 0
 };
