@@ -54,7 +54,7 @@ int main(int argc, char *argv[]) {
     printf("\tlast incrementer: %d\n", shared.incrementer);
     printf("\tlast decrementer: %d\n", shared.decrementer);
     printf("\ttotal writers: %d\n", shared.writers);
-    printf("sum %D\n", shared.sum);
-    
+    printf("sum %d\n", shared.sum);
+
     return 0;   
 }
