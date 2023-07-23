@@ -8,12 +8,10 @@ struct shared_data shared = {
 };
 
 pthread_mutex_t w_mutex = PTHREAD_MUTEX_INITIALIZER;
-pthread_cond_t w_cond = PTHREAD_COND_INITIALIZER;
 pthread_mutex_t r_mutex = PTHREAD_MUTEX_INITIALIZER;
-pthread_cond_t r_cond = PTHREAD_COND_INITIALIZER;
 int reader_count = 0;
 
-int main(int argc, char *argv[]) {
+int main(void) {
     srand(time(NULL));
     int n_incrementers = rand() % RAND_RANGE + 1;
     int n_decrementers = rand() % RAND_RANGE + 1;
