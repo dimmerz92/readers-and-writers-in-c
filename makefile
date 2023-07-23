@@ -5,6 +5,9 @@ CEXES = main
 
 all: ${CEXES}
 
+run:
+	./main
+
 %.o: %.c headers.h makefile
 	${COMPILER} ${CFLAGS} -c $< -o $@
 
